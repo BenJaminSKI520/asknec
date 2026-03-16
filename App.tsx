@@ -63,6 +63,32 @@ function parseCitations(text: string) {
   return { cleanText, citations, disclaimer };
 }
 
+
+function renderMarkdown(text: string): React.ReactNode[] {
+  const lines = text.split('\n');
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (line.trim() === '') { nodes.push(React.createElement('br', {key: i})); i++; continue; }
+    // Parse inline markdown for bold/italic
+    const parsed = line
+      .replace(/\*\*(.+?)\*\*/g, '|||BOLD_START|||$1|||BOLD_END|||')
+      .replace(/\*(.+?)\*/g, '|||EM_START|||$1|||EM_END|||');
+    const parts = parsed.split('|||');
+    const inline: React.ReactNode[] = parts.map((p, j) => {
+      if (p === 'BOLD_START' || p === 'BOLD_END' || p === 'EM_START' || p === 'EM_END') return null;
+      const prev = parts[j-1];
+      if (prev === 'BOLD_START') return React.createElement('strong', {key: j}, p);
+      if (prev === 'EM_START') return React.createElement('em', {key: j}, p);
+      return p;
+    }).filter(Boolean);
+    nodes.push(React.createElement('p', {key: i, style:{margin:'0 0 6px'}}, ...inline));
+    i++;
+  }
+  return nodes;
+}
+
 function Landing({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="landing">
@@ -229,7 +255,7 @@ function ChatApp({ apiKey, onBack }: { apiKey: string; onBack: () => void }) {
           <>
             {messages.map((m,i)=>(
               <div key={i} className={`message ${m.role}`}>
-                <div className="bubble">{m.content}</div>
+                <div className="bubble">{m.role === 'assistant' ? renderMarkdown(m.content) : m.content}</div>
                 {m.citations && m.citations.length > 0 && (
                   <div className="citations">
                     {m.citations.map((c,j)=><span key={j} className="cite-pill">{c}</span>)}
