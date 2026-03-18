@@ -6,7 +6,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_QJVIyQdf7GmUeP8XkCfkbA_gazLemtc';
 const EDGE_FN = SUPABASE_URL + '/functions/v1/nec-assistant';
 const STRIPE_LINK = 'https://buy.stripe.com/00w5kDdRw1Zu9dt36h5Vu02';
 const STRIPE_ANNUAL = 'https://buy.stripe.com/aFa14n7t86fKblBgX75Vu01';
- 
+
 const STATES = [
   "National (NEC 2023)","Alabama (2020 NEC)","Alaska (2020 NEC)",
   "Arizona (2017 NEC)","Arkansas (2020 NEC)","California (2022 Title 24)",
