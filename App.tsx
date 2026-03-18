@@ -237,7 +237,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
           ? <span>✓ Pro — unlimited questions</span>
           : atLimit
             ? <span>Free limit reached — <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">Upgrade to Pro $29/mo →</a></span>
-            : <span>{remaining} free question{remaining===1?'':'s'} left · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link"></a></span>9.99/mo</a> or <a href={STRIPE_ANNUAL} target="_blank" rel="noreferrer" className="upgrade-link"><span>{remaining} free question{remaining===1?'':'s'} left this month · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">99/yr</a></span>
+            : <span>{remaining} free question{remaining===1?'':'s'} left · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link"></a></span>$29/mo</a> or <a href={STRIPE_ANNUAL} target="_blank" rel="noreferrer" className="upgrade-link"><span>{remaining} free question{remaining===1?'':'s'} left this month · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">199/yr</a></span>
         }
       </div>
       <div className="messages-area">
