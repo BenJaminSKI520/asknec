@@ -4,7 +4,8 @@ import './style.css';
 const SUPABASE_URL = 'https://wcpqqzdpohgqzkoqwwqi.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_QJVIyQdf7GmUeP8XkCfkbA_gazLemtc';
 const EDGE_FN = SUPABASE_URL + '/functions/v1/nec-assistant';
-const STRIPE_LINK = 'https://buy.stripe.com/asknec_pro';
+const STRIPE_LINK = 'https://buy.stripe.com/8x24gzcNs8nSdt322d5Vu00';
+const STRIPE_ANNUAL = 'https://buy.stripe.com/aFa14n7t86fKb1BgX75Vu01';
 
 const STATES = [
   "National (NEC 2023)","Alabama (2020 NEC)","Alaska (2020 NEC)",
@@ -164,7 +165,8 @@ function Landing({ onEnter }:{ onEnter:()=>void }) {
               <li className="yes">Inspection prep checklists</li>
               <li className="yes">Priority support</li>
             </ul>
-            <button className="btn-primary" onClick={onEnter}>Start free trial</button>
+            <a href={STRIPE_LINK} className="btn-primary" style={{display:'block',textAlign:'center',textDecoration:'none'}}>Start monthly — $29.99/mo</a>
+            <a href={STRIPE_ANNUAL} className="btn-outline" style={{display:'block',textAlign:'center',textDecoration:'none',marginTop:'8px'}}>Best value — $199/yr <span style={{fontSize:'12px',opacity:0.8}}>(save $161)</span></a>
           </div>
         </div>
       </section>
@@ -235,7 +237,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
           ? <span>✓ Pro — unlimited questions</span>
           : atLimit
             ? <span>Free limit reached — <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">Upgrade to Pro $29/mo →</a></span>
-            : <span>{remaining} free question{remaining===1?'':'s'} left this month · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">Upgrade to Pro</a></span>
+            : <span>{remaining} free question{remaining===1?'':'s'} left · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link"></a></span>9.99/mo</a> or <a href={STRIPE_ANNUAL} target="_blank" rel="noreferrer" className="upgrade-link"><span>{remaining} free question{remaining===1?'':'s'} left this month · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">99/yr</a></span>
         }
       </div>
       <div className="messages-area">
