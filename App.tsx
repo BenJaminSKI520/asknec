@@ -165,8 +165,8 @@ function Landing({ onEnter }:{ onEnter:()=>void }) {
               <li className="yes">Inspection prep checklists</li>
               <li className="yes">Priority support</li>
             </ul>
-            <a href={STRIPE_LINK} className="btn-primary" style={{display:'block',textAlign:'center',textDecoration:'none'}}>Start monthly — $29.99/mo</a>
-            <a href={STRIPE_ANNUAL} className="btn-outline" style={{display:'block',textAlign:'center',textDecoration:'none',marginTop:'8px'}}>Best value — $199/yr <span style={{fontSize:'12px',opacity:0.8}}>(save $161)</span></a>
+<button className="btn-primary btn-lg" onClick={()=>window.open(STRIPE_LINK,'_blank')}>Start monthly — $29/mo</button>
+<button className="btn-outline" style={{marginTop:'8px',display:'block',width:'100%'}} onClick={()=>window.open(STRIPE_ANNUAL,'_blank')}>Best value — $199/yr (save $161)</button>
           </div>
         </div>
       </section>
