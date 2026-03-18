@@ -4,8 +4,8 @@ import './style.css';
 const SUPABASE_URL = 'https://wcpqqzdpohgqzkoqwwqi.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_QJVIyQdf7GmUeP8XkCfkbA_gazLemtc';
 const EDGE_FN = SUPABASE_URL + '/functions/v1/nec-assistant';
-const STRIPE_LINK = 'https://buy.stripe.com/00w5kDdRw1Zu9dt36h5Vu02';
-const STRIPE_ANNUAL = 'https://buy.stripe.com/aFa14n7t86fKblBgX75Vu01';
+const STRIPE_MONTHLY = 'https://buy.stripe.com/00w5kDdRw1Zu9dt36h5Vu02';
+const STRIPE_ANNUAL = 'https://buy.stripe.com/aFa14n7t86fKb1BgX75Vu01';
 
 const STATES = [
   "National (NEC 2023)","Alabama (2020 NEC)","Alaska (2020 NEC)",
@@ -99,15 +99,15 @@ function AuthScreen({ onAuth }:{ onAuth:(s:any)=>void }) {
   return (
     <div className="setup-screen">
       <div className="setup-card">
-        <div className="setup-icon">⚡</div>
+        <div className="setup-icon">AskNEC</div>
         <h2>{mode==='login'?'Welcome back':'Create your account'}</h2>
-        <p>{mode==='login'?'Log in to AskNEC.':'Get 10 free NEC questions per month — no credit card.'}</p>
+        <p>{mode==='login'?'Log in to AskNEC.':'Get 10 free NEC questions per month.'}</p>
         {error && <div className="auth-error">{error}</div>}
         {msg && <div className="auth-success">{msg}</div>}
         <input type="email" placeholder="Email address" value={email} onChange={e=>setEmail(e.target.value)} className="key-input"/>
-        <input type="password" placeholder="Password (min 6 chars)" value={password} onChange={e=>setPassword(e.target.value)} className="key-input" onKeyDown={e=>e.key==='Enter'&&submit()}/>
+        <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} className="key-input" onKeyDown={e=>e.key==='Enter'&&submit()}/>
         <button className="btn-primary btn-lg" onClick={submit} disabled={loading}>
-          {loading?'Please wait...':(mode==='login'?'Log in →':'Create account →')}
+          {loading?'Please wait...':(mode==='login'?'Log in':'Create account')}
         </button>
         <p className="key-note">
           {mode==='login'?"No account? ":"Have an account? "}
@@ -124,20 +124,20 @@ function Landing({ onEnter }:{ onEnter:()=>void }) {
   return (
     <div className="landing">
       <nav className="nav">
-        <div className="nav-brand"><span className="bolt">⚡</span><span className="brand-name">AskNEC</span></div>
+        <div className="nav-brand"><span className="bolt">&#x26A1;</span><span className="brand-name">AskNEC</span></div>
         <button className="btn-primary" onClick={onEnter}>Try it free</button>
       </nav>
       <section className="hero">
-        <div className="hero-badge">NEC 2023 · All 50 States</div>
-        <h1>NEC code answers<br/>in plain English</h1>
-        <p className="hero-sub">Cited to the article. Built for electricians.<br/>No more digging through 1,000 pages of codebook.</p>
-        <button className="btn-primary btn-lg" onClick={onEnter}>Try free — no account needed →</button>
-        <p className="hero-note">10 free questions/month · No credit card required</p>
+        <div className="hero-badge">NEC 2023 - All 50 States</div>
+        <h1>NEC code answers in plain English</h1>
+        <p className="hero-sub">Cited to the article. Built for electricians. No more digging through 1,000 pages of codebook.</p>
+        <button className="btn-primary btn-lg" onClick={onEnter}>Try free - no account needed</button>
+        <p className="hero-note">10 free questions per month. No credit card required.</p>
       </section>
       <section className="features">
-        <div className="feature-card"><div className="feat-icon">📖</div><h3>Plain-language answers</h3><p>Clear answers you can act on in the field, right now. No legal jargon.</p></div>
-        <div className="feature-card"><div className="feat-icon">📍</div><h3>State jurisdiction aware</h3><p>Knows which NEC edition your state adopted and local amendments.</p></div>
-        <div className="feature-card"><div className="feat-icon">🔗</div><h3>Cited to the article</h3><p>Every answer includes the specific NEC article so you can verify with your AHJ.</p></div>
+        <div className="feature-card"><div className="feat-icon">&#x1F4D6;</div><h3>Plain-language answers</h3><p>Clear answers you can act on in the field, right now.</p></div>
+        <div className="feature-card"><div className="feat-icon">&#x1F4CD;</div><h3>State jurisdiction aware</h3><p>Knows which NEC edition your state adopted.</p></div>
+        <div className="feature-card"><div className="feat-icon">&#x1F517;</div><h3>Cited to the article</h3><p>Every answer includes the specific NEC article to verify with your AHJ.</p></div>
       </section>
       <section className="pricing-section">
         <h2>Simple pricing</h2>
@@ -160,18 +160,18 @@ function Landing({ onEnter }:{ onEnter:()=>void }) {
             <div className="plan-price">$29<span>/mo</span></div>
             <ul className="plan-features">
               <li className="yes">Unlimited questions</li>
-              <li className="yes">All 50 states + local codes</li>
+              <li className="yes">All 50 states plus local codes</li>
               <li className="yes">Conversation history</li>
               <li className="yes">Inspection prep checklists</li>
               <li className="yes">Priority support</li>
             </ul>
-<button className="btn-primary btn-lg" onClick={()=>window.open(STRIPE_LINK,'_blank')}>Start monthly — $29/mo</button>
-<button className="btn-outline" style={{marginTop:'8px',display:'block',width:'100%'}} onClick={()=>window.open(STRIPE_ANNUAL,'_blank')}>Best value — $199/yr (save $161)</button>
+            <button className="btn-primary" onClick={()=>window.open(STRIPE_MONTHLY,'_blank')}>Monthly - $29/mo</button>
+            <button className="btn-outline" style={{marginTop:'8px',width:'100%'}} onClick={()=>window.open(STRIPE_ANNUAL,'_blank')}>Annual - $199/yr (save $149)</button>
           </div>
         </div>
       </section>
       <footer className="footer">
-        <span>© 2026 AskNEC · Built for the trades</span>
+        <span>2026 AskNEC - Built for the trades</span>
         <span>Always verify with your local AHJ</span>
       </footer>
     </div>
@@ -216,7 +216,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
       const { cleanText, citations, disclaimer } = parseCitations(raw);
       setMessages(prev=>[...prev,{ role:'assistant', content:cleanText, citations, disclaimer:disclaimer||undefined }]);
       setUsed((u:number)=>u+1);
-    } catch { setMessages(prev=>[...prev,{ role:'assistant', content:'Connection error — please try again.' }]); }
+    } catch { setMessages(prev=>[...prev,{ role:'assistant', content:'Connection error. Please try again.' }]); }
     setLoading(false);
   };
 
@@ -226,7 +226,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
   return (
     <div className="chat-layout">
       <div className="chat-header">
-        <div className="nav-brand"><span className="bolt">⚡</span><span className="brand-name">AskNEC</span></div>
+        <div className="nav-brand"><span className="bolt">&#x26A1;</span><span className="brand-name">AskNEC</span></div>
         <select className="jurisdiction-select" value={jurisdiction} onChange={e=>setJurisdiction(e.target.value)}>
           {STATES.map(s=><option key={s} value={s}>{s}</option>)}
         </select>
@@ -234,16 +234,16 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
       </div>
       <div className={"usage-bar"+(atLimit?' at-limit':'')}>
         {plan==='pro'
-          ? <span>✓ Pro — unlimited questions</span>
+          ? <span>Pro - unlimited questions</span>
           : atLimit
-            ? <span>Free limit reached — <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">Upgrade to Pro $29/mo →</a></span>
-            : <span>{remaining} free question{remaining===1?'':'s'} left · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link"></a></span>9.99/mo</a> or <a href={STRIPE_ANNUAL} target="_blank" rel="noreferrer" className="upgrade-link"><span>{remaining} free question{remaining===1?'':'s'} left this month · <a href={STRIPE_LINK} target="_blank" rel="noreferrer" className="upgrade-link">99/yr</a></span>
+            ? <span>Free limit reached. <a href={STRIPE_MONTHLY} target="_blank" rel="noreferrer" className="upgrade-link">Monthly $29</a> or <a href={STRIPE_ANNUAL} target="_blank" rel="noreferrer" className="upgrade-link">Annual $199</a></span>
+            : <span>{remaining} free question{remaining===1?'':'s'} left. <a href={STRIPE_MONTHLY} target="_blank" rel="noreferrer" className="upgrade-link">Upgrade to Pro</a></span>
         }
       </div>
       <div className="messages-area">
         {messages.length===0 ? (
           <div className="empty-state">
-            <div className="empty-bolt">⚡</div>
+            <div className="empty-bolt">&#x26A1;</div>
             <h2>Ask any NEC code question</h2>
             <p>Get plain-English answers cited to specific articles and sections.</p>
             <div className="suggestions-grid">
@@ -253,7 +253,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
         ) : (
           <>
             {messages.map((m:Message,i:number)=>(
-              <div key={i} className={`message ${m.role}`}>
+              <div key={i} className={"message "+m.role}>
                 <div className="bubble">{m.role==='assistant'?renderMarkdown(m.content):m.content}</div>
                 {m.citations&&m.citations.length>0&&<div className="citations">{m.citations.map((c:string,j:number)=><span key={j} className="cite-pill">{c}</span>)}</div>}
                 {m.disclaimer&&<div className="disclaimer">{m.disclaimer}</div>}
@@ -270,7 +270,7 @@ function ChatApp({ session, onSignOut }:{ session:any; onSignOut:()=>void }) {
           placeholder={atLimit?'Upgrade to Pro to continue...':'Ask a code question... (Enter to send)'}
           disabled={atLimit||loading} rows={2}/>
         <button className="send-btn" onClick={()=>ask(input)} disabled={atLimit||loading||!input.trim()}>
-          {loading?'···':'Ask →'}
+          {loading?'...':'Ask'}
         </button>
       </div>
     </div>
