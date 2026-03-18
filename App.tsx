@@ -51,13 +51,15 @@ function parseCitations(text:string) {
 
 function renderMarkdown(text:string): React.ReactNode[] {
   return text.split('\n').map((line,i) => {
-    const parts = line.replace(/\*\*(.+?)\*\*/g,'|||B|||$1|||/B|||').split('|||');
-    const inline = parts.map((p:string,j:number) => {
-      if (p==='B|||'||p==='/B|||') return null;
-      if (parts[j-1]==='B|||') return React.createElement('strong',{key:j},p);
-      return p;
-    }).filter(Boolean);
-    return React.createElement('p',{key:i,style:{margin:'0 0 6px'}}, ...inline);
+    const parts = line.replace(/\*\*(.+?)\*\*/g,'BOLDSTART$1BOLDEND').split(/(BOLDSTART|BOLDEND)/);
+    const nodes: React.ReactNode[] = [];
+    let bold = false;
+    parts.forEach((p,j) => {
+      if (p === 'BOLDSTART') { bold = true; return; }
+      if (p === 'BOLDEND') { bold = false; return; }
+      if (p) nodes.push(bold ? React.createElement('strong',{key:j},p) : p);
+    });
+    return React.createElement('p',{key:i,style:{margin:'0 0 6px'}}, ...nodes);
   });
 }
 
