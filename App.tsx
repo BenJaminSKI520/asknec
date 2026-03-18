@@ -4,7 +4,7 @@ import './style.css';
 const SUPABASE_URL = 'https://wcpqqzdpohgqzkoqwwqi.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_QJVIyQdf7GmUeP8XkCfkbA_gazLemtc';
 const EDGE_FN = SUPABASE_URL + '/functions/v1/nec-assistant';
-const STRIPE_LINK = 'https://buy.stripe.com/8x24gzcNs8nSdt322d5Vu00';
+const STRIPE_LINK = 'https://buy.stripe.com/00w5kDdRw1Zu9dt36h5Vu02';
 const STRIPE_ANNUAL = 'https://buy.stripe.com/aFa14n7t86fKb1BgX75Vu01';
 
 const STATES = [
