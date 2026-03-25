@@ -2,11 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AskNEC — NEC Code Assistant for Electricians</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>AskNEC - NEC Code Assistant for Electricians</title>
+    <meta name="description" content="Get instant NEC code answers in plain English, cited to the specific article and section. Free for electricians. Works on iPhone and Android." />
+    <meta name="keywords" content="NEC code, national electrical code, electrician tool, NEC 2023, electrical code lookup" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0C447C" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AskNEC" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://asknec.com/" />
+    <meta property="og:title" content="AskNEC - NEC Code Assistant for Electricians" />
+    <meta property="og:description" content="Get instant NEC code answers in plain English, cited to the specific article. Free for electricians." />
+    <meta property="og:image" content="https://asknec.com/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AskNEC - NEC Code Assistant" />
+    <meta name="twitter:description" content="NEC code answers in plain English, cited to the article. Free for electricians." />
+    <meta name="twitter:image" content="https://asknec.com/icons/icon-512.png" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
